@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        let navController = UINavigationController(rootViewController: HeadlinesViewController())
+        let navController = UINavigationController(rootViewController: HeadlinesRouter.makeModule())
         
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
