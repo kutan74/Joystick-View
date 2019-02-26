@@ -19,6 +19,8 @@
 		A04E9CBE22259F9500926260 /* UIView+NSConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04E9CBD22259F9500926260 /* UIView+NSConstraints.swift */; };
 		A04E9CC022259FB000926260 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04E9CBF22259FB000926260 /* BaseViewController.swift */; };
 		A04E9CC322259FDC00926260 /* HeadlinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04E9CC222259FDC00926260 /* HeadlinesViewController.swift */; };
+		A04E9CC52225A02200926260 /* NYTimesServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04E9CC42225A02200926260 /* NYTimesServices.swift */; };
+		A04E9CC72225A13700926260 /* HeadlinesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04E9CC62225A13700926260 /* HeadlinesProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		A04E9CBD22259F9500926260 /* UIView+NSConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NSConstraints.swift"; sourceTree = "<group>"; };
 		A04E9CBF22259FB000926260 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A04E9CC222259FDC00926260 /* HeadlinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesViewController.swift; sourceTree = "<group>"; };
+		A04E9CC42225A02200926260 /* NYTimesServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTimesServices.swift; sourceTree = "<group>"; };
+		A04E9CC62225A13700926260 /* HeadlinesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesProtocols.swift; sourceTree = "<group>"; };
 		C24313FF8CE34CB24B16226C /* Pods-nytimes-headlinesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nytimes-headlinesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nytimes-headlinesUITests/Pods-nytimes-headlinesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E5BA2D738633D43EC56E866B /* Pods-nytimes-headlinesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nytimes-headlinesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nytimes-headlinesTests/Pods-nytimes-headlinesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA8BD944CD7B76D01ED8A394 /* Pods_nytimes_headlines.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nytimes_headlines.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				A04E9CBF22259FB000926260 /* BaseViewController.swift */,
+				A04E9CC42225A02200926260 /* NYTimesServices.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				A04E9CC222259FDC00926260 /* HeadlinesViewController.swift */,
+				A04E9CC62225A13700926260 /* HeadlinesProtocols.swift */,
 			);
 			path = Headlines;
 			sourceTree = "<group>";
@@ -452,9 +458,11 @@
 			files = (
 				A04E9CC022259FB000926260 /* BaseViewController.swift in Sources */,
 				A04E9CC322259FDC00926260 /* HeadlinesViewController.swift in Sources */,
+				A04E9CC72225A13700926260 /* HeadlinesProtocols.swift in Sources */,
 				A04E9C8822259EE600926260 /* AppDelegate.swift in Sources */,
 				A04E9CBE22259F9500926260 /* UIView+NSConstraints.swift in Sources */,
 				A04E9C9022259EE600926260 /* nytimes_headlines.xcdatamodeld in Sources */,
+				A04E9CC52225A02200926260 /* NYTimesServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
