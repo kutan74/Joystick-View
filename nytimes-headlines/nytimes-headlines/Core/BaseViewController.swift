@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BaseViewController.swift
 //  nytimes-headlines
 //
 //  Created by KUTAN ÇINGISIZ on 26.02.2019.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class BaseViewController : UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
 }
-
