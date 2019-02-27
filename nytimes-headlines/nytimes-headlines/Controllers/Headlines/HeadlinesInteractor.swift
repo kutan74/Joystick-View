@@ -19,10 +19,9 @@ class HeadlinesInteractor : HeadlinesPresenterToInteractorProtocl {
             if case .success(let response) = result {
                 do {
                     let newsResult = try self.decodeResults(from: response.data)
-                    print("asd")
-                    //self.presenter?.newsLoadedByCategory(articles: newsResult)
+                    self.presenter?.newsLoaded(articles: newsResult)
                 }catch {
-                    //self.presenter?.newsLoadedByCategory(articles: nil)
+                    self.presenter?.newsLoaded(articles: nil)
                 }
             }
         }
