@@ -18,4 +18,8 @@ extension UIColor {
         return UIColor(red: 239.0 / 255.0, green: 238.0 / 255.0, blue: 238.0 / 255.0, alpha: 1.0)
     }
     
+    @nonobjc class var dustyBlue: UIColor {
+        return UIColor(red: 97.0 / 255.0, green: 136.0 / 255.0, blue: 164.0 / 255.0, alpha: 1.0)
+    }
+    
 }

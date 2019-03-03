@@ -48,17 +48,19 @@ class HeadlineCollectionViewCell : UICollectionViewCell {
     
     func setupViews(){
         
-        //layer.cornerRadius = 5
-        //layer.borderColor = UIColor.veryLightPinkTwo.cgColor
-        //layer.borderWidth = 1.0
-        //clipsToBounds = true
+        layer.cornerRadius = 5
+        layer.borderColor = UIColor.veryLightPinkTwo.cgColor
+        layer.borderWidth = 1.0
+        clipsToBounds = true
         
-        articleTitle.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, traling: trailingAnchor, padding: .init(top: 12, left: 37, bottom: 0, right: 15))
+        articleTitle.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, traling: trailingAnchor, padding: .init(top: 12, left: 15, bottom: 0, right: 15))
         articleTitle.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - 74).isActive = true
         
-        articleContent.anchor(top: articleTitle.bottomAnchor, leading: articleTitle.leadingAnchor, bottom: nil, traling: nil, padding: .init(top: 12, left: 0, bottom: 15, right: 15))
+        articleContent.anchor(top: articleTitle.bottomAnchor, leading: articleTitle.leadingAnchor, bottom: bottomAnchor, traling: nil, padding: .init(top: 12, left: 0, bottom: 15, right: 15))
         articleContent.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
         
     }
     
 }
+
+

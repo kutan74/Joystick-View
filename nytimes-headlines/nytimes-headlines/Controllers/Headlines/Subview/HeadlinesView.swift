@@ -12,18 +12,45 @@ final class HeadlinesView : UIView {
     
     let titleView = HeadlinesTitleView()
     var remaningArticleView = HeadlinesRemaningArticleView()
-    var collectionView : UICollectionView!
+    
+    var articlesCollectionView : UICollectionView!
+    var categoriesCollectionView : UICollectionView!
+    
+    let changeCategoryButton : UIImageView = {
+       
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "switchCategory")
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+        
+    }()
+    
+    let changeCategoryButtonGhost : UIImageView = {
+        
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "switchCategory")
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.alpha = 1.0
+        imageView.isHidden = false
+        return imageView
+        
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        [titleView,remaningArticleView].forEach {
+        [titleView,changeCategoryButton,changeCategoryButtonGhost].forEach {
             addSubview($0)
         }
         
         setupViews()
-        setupCollectionView()
         
+        setupArticlesCollectionView()
+        setupCategoriesCollectionView()
+        
+        bringSubviewToFront(changeCategoryButtonGhost)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,29 +61,70 @@ final class HeadlinesView : UIView {
         
         titleView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, traling: trailingAnchor, padding: .init(top: 8, left: 0, bottom: 0, right: 0))
         
-        remaningArticleView.anchor(top: titleView.bottomAnchor, leading: leadingAnchor, bottom: nil, traling: trailingAnchor, padding: .init(top: 28, left: 0, bottom: 0, right: 0))
+        
+        changeCategoryButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, traling: nil, padding: .init(top: 0, left: 0, bottom: 50, right: 0), size : .init(width: 48, height: 48))
+        changeCategoryButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
+        changeCategoryButtonGhost.anchor(top: nil, leading: nil, bottom: bottomAnchor, traling: nil, padding: .init(top: 0, left: 0, bottom: 50, right: 0), size : .init(width: 48, height: 48))
+        changeCategoryButtonGhost.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
         
     }
     
-    func setupCollectionView(){
+    
+    func setupArticlesCollectionView(){
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = .init(width: UIScreen.main.bounds.size.width, height: 500)
-        //layout.estimatedItemSize = .init(width: UIScreen.main.bounds.size.width - 44, height: 260)
-        layout.minimumLineSpacing = 0
+        layout.itemSize = .zero
+        layout.estimatedItemSize = .init(width: UIScreen.main.bounds.size.width - 44, height: 260)
+        layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 0
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.sectionInset = .zero
         
-        collectionView = UICollectionView(frame: self.frame, collectionViewLayout : layout)
-        collectionView.register(HeadlineCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        articlesCollectionView = UICollectionView(frame: self.frame, collectionViewLayout : layout)
+        articlesCollectionView.register(HeadlineCollectionViewCell.self, forCellWithReuseIdentifier: "articleCell")
         
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.backgroundColor = .clear
-        collectionView.isPagingEnabled = true
+        articlesCollectionView.showsVerticalScrollIndicator = false
+        articlesCollectionView.backgroundColor = .clear
+        articlesCollectionView.isPagingEnabled = true
         
-        addSubview(collectionView)
-        collectionView.anchor(top: remaningArticleView.bottomAnchor, leading: leadingAnchor, bottom: nil, traling: trailingAnchor, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: UIScreen.main.bounds.size.height - 120))
+        addSubview(articlesCollectionView)
+        articlesCollectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: changeCategoryButton.topAnchor, traling: trailingAnchor, padding: .init(top: 30, left: 22, bottom: 20, right: 22), size: .init(width: UIScreen.main.bounds.size.width - 44, height: UIScreen.main.bounds.size.height - 120))
+        
+    }
+    
+    func setupCategoriesCollectionView(){
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = .init(width: (UIScreen.main.bounds.size.width - 66) / 4, height: 30)
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
+        layout.scrollDirection = .vertical
+        layout.sectionInset = .zero
+        
+        categoriesCollectionView = UICollectionView(frame: self.frame, collectionViewLayout : layout)
+        categoriesCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "categoryCell")
+        
+        categoriesCollectionView.isScrollEnabled = false
+        categoriesCollectionView.showsVerticalScrollIndicator = false
+        categoriesCollectionView.backgroundColor = .white
+        categoriesCollectionView.layer.borderColor = UIColor.brownGrey.withAlphaComponent(0.2).cgColor
+        categoriesCollectionView.layer.borderWidth = 1.0
+        categoriesCollectionView.clipsToBounds = true
+        
+        addSubview(categoriesCollectionView)
+        categoriesCollectionView.anchor(top: nil, leading: leadingAnchor, bottom: changeCategoryButton.topAnchor, traling: trailingAnchor, padding: .init(top: 8, left: 20, bottom: 10, right: 20), size: .init(width: 0, height: 182))
+        
+        categoriesCollectionView.isHidden = true
+        
+        
+    }
+    
+    func enableCategorySelection(){
+        
+        changeCategoryButtonGhost.isHidden = false
+        categoriesCollectionView.isHidden = false
         
     }
     
