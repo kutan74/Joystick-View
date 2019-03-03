@@ -11,20 +11,9 @@ import Foundation
 struct Article : Codable {
     
     var url : String?
-    var adxKeywords : String?
-    var column : String?
-    var section : String?
-    var byLine : String?
-    var type : String?
     var title : String?
     var abstract : String?
-    var publishedDate : String?
-    var source : String?
-    var id : Int?
-    var assetId : Int?
-    var views : Int?
     
-    var media : [ArticleMedia]?
 }
 
 struct ArticleMedia : Codable {

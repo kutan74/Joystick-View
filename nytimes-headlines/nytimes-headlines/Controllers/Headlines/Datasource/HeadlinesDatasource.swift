@@ -32,6 +32,11 @@ class HeadlinesDatasource : NSObject,UICollectionViewDelegate, UICollectionViewD
         
     }
     
+    func updateData(for articles : [Article]?){
+        self.articles = articles
+        self.articlesCollectionView.reloadData()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == self.articlesCollectionView {

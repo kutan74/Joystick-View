@@ -18,9 +18,13 @@ class HeadlinesPresenter : HeadlinesViewToPresenterProtocol {
 }
 
 extension HeadlinesPresenter : HeadlinesInteractorToPresenterProtocol {
-   
+    
     func newsLoaded(articles: [Article]?) {
         self.view?.setNews(articles: articles)
+    }
+    
+    func topStoriesLoaded(articles: [Article]?) {
+        self.view?.setTopStories(articles: articles)
     }
     
     

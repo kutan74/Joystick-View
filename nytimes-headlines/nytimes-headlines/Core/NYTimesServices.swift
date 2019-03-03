@@ -15,6 +15,7 @@ import Moya
 enum NYTimesServices {
     
     case getHome()
+    case topStories(category : String)
     
 }
 
@@ -26,12 +27,16 @@ extension NYTimesServices : TargetType {
         switch self {
         case .getHome():
             return "mostpopular/v2/viewed/1.json"
+        case .topStories(let category):
+            return "topstories/v2/\(category).json"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .getHome():
+            return .get
+        case .topStories(_):
             return .get
         }
         
@@ -41,6 +46,8 @@ extension NYTimesServices : TargetType {
         switch self {
         case .getHome():
             return .requestParameters(parameters: ["api-key" : "ULhVgXclfW67BJ4OOqY8aKIFkGZtQtbs"], encoding: URLEncoding.queryString)
+        case .topStories(_):
+            return .requestParameters(parameters: ["api-key" : "ULhVgXclfW67BJ4OOqY8aKIFkGZtQtbs"], encoding: URLEncoding.queryString)
         }
     }
     
@@ -48,11 +55,13 @@ extension NYTimesServices : TargetType {
         switch self {
         case .getHome():
             return "Half measures are as bad as nothing at all.".utf8Encoded
+        case .topStories(_):
+            return "Half measures are as bad as nothing at all.".utf8Encoded
         }
     }
     
     var headers: [String: String]? {
-        return ["Authorization ":"Test","Content-type": "application/json"]
+        return ["Content-type": "application/json"]
     }
 }
 

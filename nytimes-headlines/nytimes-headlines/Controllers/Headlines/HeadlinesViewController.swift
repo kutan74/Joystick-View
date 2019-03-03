@@ -66,10 +66,26 @@ class HeadlinesViewController : BaseViewController {
 
 // MARK: Presenter to View
 extension HeadlinesViewController : HeadlinesPresenterToViewProtocol {
+    
+    func setTopStories(articles: [Article]?) {
+        
+        guard let _articles = articles else {
+            return
+        }
+        
+        self.articles = _articles
+        self.datasource.updateData(for: self.articles)
+        
+    }
+    
    
     func setNews(articles: [Article]?) {
         
-        self.articles = articles
+        guard let _articles = articles else {
+            return
+        }
+        
+        self.articles = _articles
         self.setCollectionViewDatasource()
         
     }
@@ -113,6 +129,7 @@ extension HeadlinesViewController {
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.subView)
         
         }else if gestureRecognizer.state == .ended {
+            self.presenter?.interactor?.loadTopStories(by: self.categories[self.currentHoveredItemIndex].title)
             self.subView.disableCategorySelection()
             //gestureRecognizer.view!.center = .zero
             gestureRecognizer.view!.center = self.subView.changeCategoryButton.center

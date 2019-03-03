@@ -11,6 +11,7 @@ import UIKit
 protocol HeadlinesPresenterToViewProtocol : class {
     
     func setNews(articles : [Article]?)
+    func setTopStories(articles : [Article]?)
     
 }
 
@@ -26,12 +27,14 @@ protocol HeadlinesPresenterToInteractorProtocl : class {
     var presenter : HeadlinesInteractorToPresenterProtocol? {get set}
     
     func loadNews()
+    func loadTopStories(by category : String)
     
 }
 
 protocol HeadlinesInteractorToPresenterProtocol {
     
     func newsLoaded(articles : [Article]?)
+    func topStoriesLoaded(articles : [Article]?)
     
 }
 

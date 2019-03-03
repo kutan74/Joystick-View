@@ -238,11 +238,15 @@
 		A04E9CC122259FD100926260 /* Headlines */ = {
 			isa = PBXGroup;
 			children = (
-				A06B88F5222C2C7C001B051E /* HeadlineCategoryGestureHelper.swift */,
+				A06B88FB222C4608001B051E /* GesturePanHelper */,
 				A04E9CEF22285BEC00926260 /* Datasource */,
 				A04E9CEE22285BE400926260 /* Subview */,
-				A04E9CED22285BD700926260 /* Modules */,
-				A04E9CD72225AD1200926260 /* CollectionViewCell */,
+				A04E9CD72225AD1200926260 /* CollectionViewCells */,
+				A04E9CC222259FDC00926260 /* HeadlinesViewController.swift */,
+				A04E9CC62225A13700926260 /* HeadlinesProtocols.swift */,
+				A04E9CC82225A15000926260 /* HeadlinesPresenter.swift */,
+				A04E9CCA2225A15800926260 /* HeadlinesInteractor.swift */,
+				A04E9CCC2225A16000926260 /* HeadlinesRouter.swift */,
 			);
 			path = Headlines;
 			sourceTree = "<group>";
@@ -255,25 +259,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		A04E9CD72225AD1200926260 /* CollectionViewCell */ = {
+		A04E9CD72225AD1200926260 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
 				A04E9CD82225AD2500926260 /* HeadlineCollectionViewCell.swift */,
 				A04E9CEB22285B6D00926260 /* CategoryCollectionViewCell.swift */,
 			);
-			path = CollectionViewCell;
-			sourceTree = "<group>";
-		};
-		A04E9CED22285BD700926260 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				A04E9CC222259FDC00926260 /* HeadlinesViewController.swift */,
-				A04E9CC62225A13700926260 /* HeadlinesProtocols.swift */,
-				A04E9CC82225A15000926260 /* HeadlinesPresenter.swift */,
-				A04E9CCA2225A15800926260 /* HeadlinesInteractor.swift */,
-				A04E9CCC2225A16000926260 /* HeadlinesRouter.swift */,
-			);
-			path = Modules;
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		A04E9CEE22285BE400926260 /* Subview */ = {
@@ -292,6 +284,14 @@
 				A04E9CF022285DFB00926260 /* HeadlinesDatasource.swift */,
 			);
 			path = Datasource;
+			sourceTree = "<group>";
+		};
+		A06B88FB222C4608001B051E /* GesturePanHelper */ = {
+			isa = PBXGroup;
+			children = (
+				A06B88F5222C2C7C001B051E /* HeadlineCategoryGestureHelper.swift */,
+			);
+			path = GesturePanHelper;
 			sourceTree = "<group>";
 		};
 		A32FD9CC632390D0FA16280F /* Pods */ = {
@@ -495,6 +495,7 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -504,6 +505,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
