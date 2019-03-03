@@ -32,7 +32,7 @@
 		A04E9CEC22285B6D00926260 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04E9CEB22285B6D00926260 /* CategoryCollectionViewCell.swift */; };
 		A04E9CF122285DFB00926260 /* HeadlinesDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04E9CF022285DFB00926260 /* HeadlinesDatasource.swift */; };
 		A04E9CF62229257900926260 /* HeadlineCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04E9CF52229257900926260 /* HeadlineCategory.swift */; };
-		A06B88F6222C2C7C001B051E /* HeadlinesGestureSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06B88F5222C2C7C001B051E /* HeadlinesGestureSettings.swift */; };
+		A06B88F6222C2C7C001B051E /* HeadlineCategoryGestureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06B88F5222C2C7C001B051E /* HeadlineCategoryGestureHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +87,7 @@
 		A04E9CEB22285B6D00926260 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		A04E9CF022285DFB00926260 /* HeadlinesDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesDatasource.swift; sourceTree = "<group>"; };
 		A04E9CF52229257900926260 /* HeadlineCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineCategory.swift; sourceTree = "<group>"; };
-		A06B88F5222C2C7C001B051E /* HeadlinesGestureSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesGestureSettings.swift; sourceTree = "<group>"; };
+		A06B88F5222C2C7C001B051E /* HeadlineCategoryGestureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineCategoryGestureHelper.swift; sourceTree = "<group>"; };
 		C24313FF8CE34CB24B16226C /* Pods-nytimes-headlinesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nytimes-headlinesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nytimes-headlinesUITests/Pods-nytimes-headlinesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E5BA2D738633D43EC56E866B /* Pods-nytimes-headlinesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nytimes-headlinesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nytimes-headlinesTests/Pods-nytimes-headlinesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA8BD944CD7B76D01ED8A394 /* Pods_nytimes_headlines.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nytimes_headlines.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,7 +216,6 @@
 			children = (
 				A04E9CBF22259FB000926260 /* BaseViewController.swift */,
 				A04E9CC42225A02200926260 /* NYTimesServices.swift */,
-				A06B88F5222C2C7C001B051E /* HeadlinesGestureSettings.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -235,6 +234,7 @@
 		A04E9CC122259FD100926260 /* Headlines */ = {
 			isa = PBXGroup;
 			children = (
+				A06B88F5222C2C7C001B051E /* HeadlineCategoryGestureHelper.swift */,
 				A04E9CEF22285BEC00926260 /* Datasource */,
 				A04E9CEE22285BE400926260 /* Subview */,
 				A04E9CED22285BD700926260 /* Modules */,
@@ -535,7 +535,7 @@
 			files = (
 				A04E9CC92225A15000926260 /* HeadlinesPresenter.swift in Sources */,
 				A04E9CEC22285B6D00926260 /* CategoryCollectionViewCell.swift in Sources */,
-				A06B88F6222C2C7C001B051E /* HeadlinesGestureSettings.swift in Sources */,
+				A06B88F6222C2C7C001B051E /* HeadlineCategoryGestureHelper.swift in Sources */,
 				A04E9CD62225A78800926260 /* UIColor+Palette.swift in Sources */,
 				A04E9CF62229257900926260 /* HeadlineCategory.swift in Sources */,
 				A04E9CCB2225A15800926260 /* HeadlinesInteractor.swift in Sources */,

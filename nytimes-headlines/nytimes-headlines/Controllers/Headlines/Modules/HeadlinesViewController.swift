@@ -20,6 +20,8 @@ class HeadlinesViewController : BaseViewController {
     
     var currentIndex = 0
     
+    var gestureHelper : HeadlineCategoryGestureHelper!
+    
     // Seperated UICollectionView datasource from the VC to avoid a massive VC
     var datasource : HeadlinesDatasource!
     
@@ -42,6 +44,11 @@ class HeadlinesViewController : BaseViewController {
         let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         self.subView.changeCategoryButtonGhost.addGestureRecognizer(gestureRecognizer)
         
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.gestureHelper = HeadlineCategoryGestureHelper()
     }
     
     // MARK: CollectionView Datasource
@@ -76,6 +83,7 @@ extension HeadlinesViewController : HeadlinesPresenterToViewProtocol {
     
 }
 
+// MARK: GestureRecognizer
 extension HeadlinesViewController {
     
     func draggedView(sender:UIPanGestureRecognizer){
@@ -88,71 +96,19 @@ extension HeadlinesViewController {
         
         var initialPosition : CGPoint = .zero
         
-        
         if gestureRecognizer.state == .began {
             initialPosition = gestureRecognizer.view!.center
             gestureRecognizer.view?.center = .init(x: self.subView.categoriesCollectionView.center.x, y: self.subView.categoriesCollectionView.center.y)
             self.subView.enableCategorySelection()
+            
         }else if gestureRecognizer.state == .changed {
-            
-            gestureRecognizer.view?.alpha = 0.7
+                        
             let translation = gestureRecognizer.translation(in: self.subView)
+            let hoveredItem = self.gestureHelper.getCurrentHoveredItemIndex(ghosView: gestureRecognizer.view!,collectionViewFrame: self.subView.categoriesCollectionView.frame)
             
-            
-            let gestureViewCenter = gestureRecognizer.view?.center
-            
-            let centerY = gestureViewCenter?.y
-            let centerX = gestureViewCenter?.x
-            
-            let centerYFromBottom = centerY! - (self.subView.categoriesCollectionView.frame.minY)
-            let centerXFromRight = centerX! - (self.subView.categoriesCollectionView.frame.minX)
-            
-            let categoryItemWidth = (UIScreen.main.bounds.size.width - 66) / 4
-            let categoryItemHeight = CGFloat(30.0)
-            
-            let verticalSpacing = CGFloat(8.0)
-            let horizontalSpacing = CGFloat(8.0)
-            
-            let categoryRowCount : CGFloat = 4.0
-            
-            var rowCount = 0
-            var columnCount = 0
-            
-            if centerYFromBottom >= categoryItemHeight + verticalSpacing {
-                
-                if centerYFromBottom - CGFloat((categoryRowCount * verticalSpacing)) < categoryItemHeight {
-                    rowCount = 1
-                }else {
-                    rowCount = Int((centerYFromBottom - 32) / 30)
-                }
-                
-            }else {
-                rowCount = 0
-            }
-            
-            
-            if centerXFromRight >= categoryItemWidth + horizontalSpacing {
-                
-                if centerXFromRight - (categoryRowCount * horizontalSpacing) < categoryItemWidth {
-                    columnCount = 1
-                }else {
-                    columnCount = Int((centerXFromRight - 24) / categoryItemWidth)
-                }
-                
-            }else {
-                columnCount = 0
-            }
-            
-            //print(columnCount)
-            
-            let item = (rowCount * 4) + columnCount
-            
-            if item < self.categories.count {
-                self.currentIndex = item
-                self.datasource.hoveredItem = self.currentIndex
-                self.subView.categoriesCollectionView.reloadData()
-            }
-            
+            self.currentIndex = hoveredItem
+            self.datasource.hoveredItem = self.currentIndex
+            self.subView.categoriesCollectionView.reloadData()
             
             gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y * 1.5)
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.subView)
@@ -161,11 +117,11 @@ extension HeadlinesViewController {
             gestureRecognizer.view?.alpha = 1.0
             gestureRecognizer.view!.center = initialPosition
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.subView)
-            self.subView.bringSubviewToFront(self.subView.changeCategoryButtonGhost)
+            
         }else {
-            print("asd")
         }
         
+        // Reload new category
         
     }
     
