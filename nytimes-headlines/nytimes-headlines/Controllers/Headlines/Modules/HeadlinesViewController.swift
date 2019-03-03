@@ -96,7 +96,11 @@ extension HeadlinesViewController {
             self.subView.enableCategorySelection()
             
         }else if gestureRecognizer.state == .changed {
-                        
+            
+            guard let _ = self.articles else {
+                return
+            }
+            
             let translation = gestureRecognizer.translation(in: self.subView)
             
             // Get the current hovered item
@@ -110,15 +114,14 @@ extension HeadlinesViewController {
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.subView)
         
         }else if gestureRecognizer.state == .ended {
-            gestureRecognizer.view?.alpha = 1.0
-            gestureRecognizer.view!.center = initialPosition
+            self.subView.disableCategorySelection()
+            //gestureRecognizer.view!.center = .zero
+            gestureRecognizer.view!.center = self.subView.changeCategoryButton.center
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.subView)
             
         }else {
-            self.subView.disableCategorySelection()
+            // What ?
         }
-        
-        // Reload new category
         
     }
     

@@ -119,6 +119,7 @@ final class HeadlinesView : UIView {
     
     func enableCategorySelection(){
         
+        articlesCollectionView.alpha = 0.3        
         changeCategoryButtonGhost.alpha = 0.7
         categoriesCollectionView.isHidden = false
         
@@ -126,6 +127,7 @@ final class HeadlinesView : UIView {
     
     func disableCategorySelection(){
         
+        articlesCollectionView.alpha = 1.0
         changeCategoryButtonGhost.alpha = 1.0
         categoriesCollectionView.isHidden = true
         bringSubviewToFront(changeCategoryButtonGhost)
