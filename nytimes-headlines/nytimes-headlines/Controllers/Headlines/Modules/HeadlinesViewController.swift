@@ -14,11 +14,9 @@ class HeadlinesViewController : BaseViewController {
     var presenter : HeadlinesViewToPresenterProtocol?
     
     var articles : [Article]!
-    
-    var categoryTitles : [String] = ["U.S","Business","Tech","Science","N.Y","Health","Food","Travel","Book","Art","Music","Space","Test 1","Test 2","Test 3","Test 4","Test 5"]
     var categories : [HeadlineCategory] = []
     
-    var currentIndex = 0
+    var currentHoveredItemIndex = -1
     
     var gestureHelper : HeadlineCategoryGestureHelper!
     
@@ -36,6 +34,8 @@ class HeadlinesViewController : BaseViewController {
     // MARK: Subview
     func setupViews(){
      
+        self.gestureHelper = HeadlineCategoryGestureHelper()
+        
         self.layoutSubview(for: self.subView)
         self.title = "New York Times"
         self.presenter?.interactor?.loadNews()
@@ -46,16 +46,10 @@ class HeadlinesViewController : BaseViewController {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.gestureHelper = HeadlineCategoryGestureHelper()
-    }
-    
     // MARK: CollectionView Datasource
     func setCollectionViewDatasource(){
         
-        
-        self.categoryTitles.forEach {
+        self.gestureHelper.categories.forEach {
             self.categories.append(HeadlineCategory(title: $0))
         }
                 
@@ -104,10 +98,12 @@ extension HeadlinesViewController {
         }else if gestureRecognizer.state == .changed {
                         
             let translation = gestureRecognizer.translation(in: self.subView)
+            
+            // Get the current hovered item
             let hoveredItem = self.gestureHelper.getCurrentHoveredItemIndex(ghosView: gestureRecognizer.view!,collectionViewFrame: self.subView.categoriesCollectionView.frame)
             
-            self.currentIndex = hoveredItem
-            self.datasource.hoveredItem = self.currentIndex
+            self.currentHoveredItemIndex = hoveredItem
+            self.datasource.hoveredItem = self.currentHoveredItemIndex
             self.subView.categoriesCollectionView.reloadData()
             
             gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y * 1.5)
@@ -119,6 +115,7 @@ extension HeadlinesViewController {
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.subView)
             
         }else {
+            self.subView.disableCategorySelection()
         }
         
         // Reload new category
