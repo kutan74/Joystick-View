@@ -60,11 +60,9 @@ class HeadlinesDatasource : NSObject,UICollectionViewDelegate, UICollectionViewD
             cell.categoryTitle.text = category.title
             
             if indexPath.row == hoveredItem {
-                cell.backgroundColor = UIColor.dustyBlue
-                cell.categoryTitle.textColor = .white
+                cell.enableHover()
             }else {
-                cell.backgroundColor = UIColor.clear
-                cell.categoryTitle.textColor = .black
+                cell.disableHover()
             }
             
             return cell

@@ -88,15 +88,14 @@ extension HeadlinesViewController {
     
     @objc func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
         
-        var initialPosition : CGPoint = .zero
-        
         if gestureRecognizer.state == .began {
-            initialPosition = gestureRecognizer.view!.center
             gestureRecognizer.view?.center = .init(x: self.subView.categoriesCollectionView.center.x, y: self.subView.categoriesCollectionView.center.y)
             self.subView.enableCategorySelection()
             
         }else if gestureRecognizer.state == .changed {
             
+            // If somehow we have zero articles result
+            // Cancel pan
             guard let _ = self.articles else {
                 return
             }

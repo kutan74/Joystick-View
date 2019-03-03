@@ -37,7 +37,7 @@ class CategoryCollectionViewCell : UICollectionViewCell,HoverableCategory {
     func setupViews(){
         
         layer.cornerRadius = 5
-        layer.borderColor = UIColor.brownGrey.withAlphaComponent(0.5).cgColor
+        layer.borderColor = UIColor.black.cgColor
         layer.borderWidth = 1.0
         clipsToBounds = true
         
@@ -45,6 +45,18 @@ class CategoryCollectionViewCell : UICollectionViewCell,HoverableCategory {
         categoryTitle.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         categoryTitle.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
+    }
+    
+    func enableHover(){
+        backgroundColor = UIColor.dustyBlue
+        categoryTitle.textColor = .white
+        layer.borderColor = UIColor.clear.cgColor
+    }
+    
+    func disableHover(){
+        backgroundColor = UIColor.clear
+        categoryTitle.textColor = .black
+        layer.borderColor = UIColor.black.cgColor
     }
     
 }

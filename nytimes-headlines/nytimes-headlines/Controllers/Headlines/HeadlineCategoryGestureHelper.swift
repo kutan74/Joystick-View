@@ -10,7 +10,8 @@ import UIKit
 
 class HeadlineCategoryGestureHelper {
     
-    final let categories : [String] = ["U.S","Business","Tech","Science","N.Y","Health","Food","Travel","Book","Art","Music","Space","Test 1","Test 2","Test 3","Test 4","Test 5"]
+    final let categories : [String] = ["World","U.S","Politics","Business","Opinion","Tech","Science","Health","Sports","Art","Book","Style"
+        ,"Food","Travel","Magazine","T Magazine","Real Estate","Video"]
     
     // CategoryCollectionView constant values
     final let categoryItemWidth : CGFloat =  (UIScreen.main.bounds.size.width - 66) / 4

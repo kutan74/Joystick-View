@@ -111,7 +111,7 @@ final class HeadlinesView : UIView {
         categoriesCollectionView.backgroundColor = .white
         
         addSubview(categoriesCollectionView)
-        categoriesCollectionView.anchor(top: nil, leading: leadingAnchor, bottom: changeCategoryButton.topAnchor, traling: trailingAnchor, padding: .init(top: 8, left: 20, bottom: 10, right: 20), size: .init(width: 0, height: 182))
+        categoriesCollectionView.anchor(top: nil, leading: leadingAnchor, bottom: changeCategoryButton.topAnchor, traling: trailingAnchor, padding: .init(top: 8, left: 20, bottom: 40, right: 20), size: .init(width: 0, height: 182))
         
         categoriesCollectionView.isHidden = true
                 
@@ -119,7 +119,7 @@ final class HeadlinesView : UIView {
     
     func enableCategorySelection(){
         
-        articlesCollectionView.alpha = 0.3        
+        articlesCollectionView.alpha = 0.1
         changeCategoryButtonGhost.alpha = 0.7
         categoriesCollectionView.isHidden = false
         
