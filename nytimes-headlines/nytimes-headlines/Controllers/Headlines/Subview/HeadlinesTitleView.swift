@@ -77,7 +77,7 @@ final class HeadlinesTitleView : UIView {
         leftDividerTrailingConstraint.constant = -200
         rightDividerLeadingConstraint.constant = 200
         
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.1, animations: {
             
             self.layoutIfNeeded()
             
@@ -87,7 +87,7 @@ final class HeadlinesTitleView : UIView {
                 self.leftDividerTrailingConstraint.constant = -8
                 self.rightDividerLeadingConstraint.constant = 8
                 
-                UIView.animate(withDuration: 0.2, animations: {
+                UIView.animate(withDuration: 0.1, animations: {
                     
                     self.layoutIfNeeded()
                     
@@ -96,11 +96,8 @@ final class HeadlinesTitleView : UIView {
                         self.titleLabel.text = title
                     }
                 })
-                
             }
         }
-        
     }
-    
 }
 

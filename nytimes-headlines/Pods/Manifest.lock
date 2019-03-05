@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (4.8.0)
-  - Kingfisher (5.0.1)
   - Moya (12.0.1):
     - Moya/Core (= 12.0.1)
   - Moya/Core (12.0.1):
@@ -11,25 +10,22 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.8.0)
-  - Kingfisher (~> 5.0)
   - Moya (~> 12.0)
   - SkeletonView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - Kingfisher
     - Moya
     - Result
     - SkeletonView
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  Kingfisher: 4f771421b9208185217550528a06fd48756cb7c2
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   SkeletonView: 60d6ce7edb0cb4c7758db33c74add50392b3c475
 
-PODFILE CHECKSUM: 4786e4e7c7598f6f72913eaba161b25ea095eb9c
+PODFILE CHECKSUM: 7e1cc463a6095105f6e9572d90a963be9ff66169
 
 COCOAPODS: 1.5.3

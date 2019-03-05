@@ -67,6 +67,11 @@ extension HeadlineCategoryGestureHelper {
         
         let centerYFromBottom = ghostView.center.y - (self.collectionViewFrame.minY)
         
+        // That means we're out of bounds
+        if centerYFromBottom < 0 {
+            return -1
+        }
+        
         if centerYFromBottom >= categoryItemHeight + categoryVerticalSpacing {
             
             if centerYFromBottom - (CGFloat(rowCount) * categoryVerticalSpacing) < categoryItemHeight {
@@ -75,7 +80,7 @@ extension HeadlineCategoryGestureHelper {
                 return Int((centerYFromBottom - (CGFloat(rowCount) * categoryVerticalSpacing)) / categoryItemHeight)
             }
             
-        }else {
+        }else{
             return 0
         }
     }

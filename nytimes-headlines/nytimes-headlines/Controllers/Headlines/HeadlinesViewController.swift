@@ -37,7 +37,7 @@ class HeadlinesViewController : BaseViewController {
         self.gestureHelper = HeadlineCategoryGestureHelper()
         
         self.layoutSubview(for: self.subView)
-        self.title = "New York Times"
+        self.title = "The New York Times"
         self.presenter?.interactor?.loadNews()
         
         self.subView.changeCategoryButtonGhost.isUserInteractionEnabled = true
@@ -120,13 +120,11 @@ extension HeadlinesViewController {
             // Get the current hovered item
             let hoveredItem = self.gestureHelper.getCurrentHoveredItemIndex(ghosView: gestureRecognizer.view!,collectionViewFrame: self.subView.categoriesCollectionView.frame)
             
-            
-            
             self.currentHoveredItemIndex = hoveredItem
             self.datasource.hoveredItem = self.currentHoveredItemIndex
             self.subView.categoriesCollectionView.reloadData()
             
-            gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y * 1.25)
+            gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x * 1.25, y: gestureRecognizer.view!.center.y + translation.y * 1.25)
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.subView)
         
         }else if gestureRecognizer.state == .ended {
