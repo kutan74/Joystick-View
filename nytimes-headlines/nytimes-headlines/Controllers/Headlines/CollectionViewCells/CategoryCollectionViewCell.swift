@@ -19,8 +19,6 @@ class CategoryCollectionViewCell : UICollectionViewCell,HoverableCategory {
         
     }()
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

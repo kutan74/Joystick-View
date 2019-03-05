@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class HeadlinesDatasource : NSObject,UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -19,6 +20,7 @@ class HeadlinesDatasource : NSObject,UICollectionViewDelegate, UICollectionViewD
     var ghostView : UIView!
     
     var hoveredItem = 0
+    var isLoadingNewCategory = false
     
     init(for articlesCollectionView : UICollectionView, with articles : [Article]? , for categoriesCollectionView : UICollectionView, for categories : [HeadlineCategory],ghostView : UIView!) {
         
@@ -34,6 +36,7 @@ class HeadlinesDatasource : NSObject,UICollectionViewDelegate, UICollectionViewD
     
     func updateData(for articles : [Article]?){
         self.articles = articles
+        self.hideSkeleton()
         self.articlesCollectionView.reloadData()
     }
     
@@ -56,6 +59,13 @@ class HeadlinesDatasource : NSObject,UICollectionViewDelegate, UICollectionViewD
             cell.articleTitle.text = article.title!
             cell.articleContent.text = article.abstract!
             
+            if isLoadingNewCategory {
+                cell.showGradientSkeleton()
+                
+            }else {                
+                cell.hideSkeleton()
+            }
+            
             return cell
             
         }else {
@@ -74,6 +84,20 @@ class HeadlinesDatasource : NSObject,UICollectionViewDelegate, UICollectionViewD
             
         }
         
+    }
+    
+}
+
+extension HeadlinesDatasource {
+    
+    func showSkeleton(){
+        self.isLoadingNewCategory = true
+        self.articlesCollectionView.reloadData()
+    }
+    
+    func hideSkeleton(){
+        self.isLoadingNewCategory = false
+        self.articlesCollectionView.reloadData()
     }
     
 }

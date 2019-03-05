@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HeadlineCollectionViewCell : UICollectionViewCell {
+class HeadlineCollectionViewCell : UICollectionViewCell{
     
     let articleTitle : UILabel = {
        

@@ -28,14 +28,12 @@ class HeadlinesInteractor : HeadlinesPresenterToInteractorProtocl {
     }
     
     func loadTopStories(by category: String) {
-        print("loading top stories")
         MoyaProvider<NYTimesServices>(plugins : [NetworkLoggerPlugin()]).request(.topStories(category: category.lowercased())) { result in
             if case .success(let response) = result {
                 do {
                     let newsResult = try self.decodeResults(from: response.data)
                     self.presenter?.topStoriesLoaded(articles: newsResult)
                 }catch {
-                    print(String(data:response.data, encoding: .utf8))
                     self.presenter?.topStoriesLoaded(articles: nil)
                 }
             }

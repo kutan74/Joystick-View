@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class HeadlinesViewController : BaseViewController {
     
@@ -28,7 +29,6 @@ class HeadlinesViewController : BaseViewController {
         view.backgroundColor = .white
         
         self.setupViews()
-        
     }
     
     // MARK: Subview
@@ -72,13 +72,12 @@ extension HeadlinesViewController : HeadlinesPresenterToViewProtocol {
         guard let _articles = articles else {
             return
         }
-        
+                
         self.articles = _articles
         self.datasource.updateData(for: self.articles)
         
     }
     
-   
     func setNews(articles: [Article]?) {
         
         guard let _articles = articles else {
@@ -89,7 +88,6 @@ extension HeadlinesViewController : HeadlinesPresenterToViewProtocol {
         self.setCollectionViewDatasource()
         
     }
-    
     
 }
 
@@ -121,24 +119,29 @@ extension HeadlinesViewController {
             // Get the current hovered item
             let hoveredItem = self.gestureHelper.getCurrentHoveredItemIndex(ghosView: gestureRecognizer.view!,collectionViewFrame: self.subView.categoriesCollectionView.frame)
             
+            
+            
             self.currentHoveredItemIndex = hoveredItem
             self.datasource.hoveredItem = self.currentHoveredItemIndex
             self.subView.categoriesCollectionView.reloadData()
             
-            gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y * 1.5)
+            gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y * 1.25)
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.subView)
         
         }else if gestureRecognizer.state == .ended {
-            self.presenter?.interactor?.loadTopStories(by: self.categories[self.currentHoveredItemIndex].title)
+            
             self.subView.disableCategorySelection()
-            //gestureRecognizer.view!.center = .zero
+            
+            if self.currentHoveredItemIndex > 0 && self.currentHoveredItemIndex < self.categories.count - 1 {
+                self.datasource.showSkeleton()
+                self.presenter?.interactor?.loadTopStories(by: self.categories[self.currentHoveredItemIndex].title)
+            }
             gestureRecognizer.view!.center = self.subView.changeCategoryButton.center
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.subView)
             
         }else {
-            // What ?
+            return
         }
-        
     }
     
 }

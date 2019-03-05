@@ -71,7 +71,6 @@ final class HeadlinesView : UIView {
         
     }
     
-    
     func setupArticlesCollectionView(){
         
         let layout = UICollectionViewFlowLayout()
@@ -89,7 +88,7 @@ final class HeadlinesView : UIView {
         articlesCollectionView.backgroundColor = .clear        
         
         addSubview(articlesCollectionView)
-        articlesCollectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: changeCategoryButton.topAnchor, traling: trailingAnchor, padding: .init(top: 30, left: 22, bottom: 20, right: 22), size: .init(width: UIScreen.main.bounds.size.width - 44, height: UIScreen.main.bounds.size.height - 120))
+        articlesCollectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: changeCategoryButton.topAnchor, traling: trailingAnchor, padding: .init(top: 30, left: 22, bottom: 8, right: 22), size: .init(width: UIScreen.main.bounds.size.width - 44, height: UIScreen.main.bounds.size.height - 120))
         
     }
     
@@ -127,18 +126,11 @@ final class HeadlinesView : UIView {
     
     func disableCategorySelection(){
         
-        UIView.animate(withDuration: 0.5, animations: {
-            
-            self.articlesCollectionView.alpha = 1.0
-            self.categoriesCollectionView.alpha = 0.0
-            self.changeCategoryButtonGhost.alpha = 1.0
-            
-        }) { (done) in
-            if done {
-                self.categoriesCollectionView.isHidden = true
-                self.bringSubviewToFront(self.changeCategoryButtonGhost)
-            }
-        }
+        self.articlesCollectionView.alpha = 1.0
+        self.categoriesCollectionView.alpha = 0.0
+        self.changeCategoryButtonGhost.alpha = 1.0
+        self.categoriesCollectionView.isHidden = true
+        self.bringSubviewToFront(self.changeCategoryButtonGhost)
         
     }
     
