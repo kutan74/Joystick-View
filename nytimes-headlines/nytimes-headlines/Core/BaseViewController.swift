@@ -14,13 +14,11 @@ class BaseViewController : UIViewController {
         super.viewDidLoad()
         
         self.setupNavigationBar()
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     
     // MARK: Navigation Bar
     func setupNavigationBar(){
@@ -30,7 +28,6 @@ class BaseViewController : UIViewController {
         
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "OldeEnglish-Regular", size: 28)!]
-                
         
     }
     

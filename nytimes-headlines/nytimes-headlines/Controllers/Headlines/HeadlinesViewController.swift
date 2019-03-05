@@ -72,7 +72,8 @@ extension HeadlinesViewController : HeadlinesPresenterToViewProtocol {
         guard let _articles = articles else {
             return
         }
-                
+        
+        self.subView.updateSectionTitle(title: self.categories[self.currentHoveredItemIndex].title.uppercased())
         self.articles = _articles
         self.datasource.updateData(for: self.articles)
         
@@ -83,7 +84,7 @@ extension HeadlinesViewController : HeadlinesPresenterToViewProtocol {
         guard let _articles = articles else {
             return
         }
-        
+               
         self.articles = _articles
         self.setCollectionViewDatasource()
         
@@ -95,9 +96,11 @@ extension HeadlinesViewController : HeadlinesPresenterToViewProtocol {
 extension HeadlinesViewController {
     
     func draggedView(sender:UIPanGestureRecognizer){
+        
         let translation = sender.translation(in: self.view)
         self.subView.changeCategoryButton.center = CGPoint(x: self.subView.changeCategoryButton.center.x + translation.x, y: self.subView.changeCategoryButton.center.y + translation.y)
         sender.setTranslation(CGPoint.zero, in: self.view)
+        
     }
     
     @objc func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
@@ -108,8 +111,6 @@ extension HeadlinesViewController {
             
         }else if gestureRecognizer.state == .changed {
             
-            // If somehow we have zero articles result
-            // Cancel pan
             guard let _ = self.articles else {
                 return
             }
@@ -136,6 +137,7 @@ extension HeadlinesViewController {
                 self.datasource.showSkeleton()
                 self.presenter?.interactor?.loadTopStories(by: self.categories[self.currentHoveredItemIndex].title)
             }
+            
             gestureRecognizer.view!.center = self.subView.changeCategoryButton.center
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.subView)
             

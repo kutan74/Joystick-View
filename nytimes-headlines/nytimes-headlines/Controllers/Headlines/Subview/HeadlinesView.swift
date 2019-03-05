@@ -19,7 +19,7 @@ final class HeadlinesView : UIView {
     let changeCategoryButton : UIImageView = {
        
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "switchCategory")
+        imageView.image = UIImage(named: "switchCategoryTapped")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -29,7 +29,7 @@ final class HeadlinesView : UIView {
     let changeCategoryButtonGhost : UIImageView = {
         
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "switchCategory")
+        imageView.image = UIImage(named: "switchCategoryTapped")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.alpha = 1.0
@@ -62,10 +62,10 @@ final class HeadlinesView : UIView {
         titleView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, traling: trailingAnchor, padding: .init(top: 8, left: 0, bottom: 0, right: 0))
         
         
-        changeCategoryButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, traling: nil, padding: .init(top: 0, left: 0, bottom: 50, right: 0), size : .init(width: 48, height: 48))
+        changeCategoryButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, traling: nil, padding: .init(top: 0, left: 0, bottom: 50, right: 0), size : .init(width: 60, height: 60))
         changeCategoryButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
-        changeCategoryButtonGhost.anchor(top: nil, leading: nil, bottom: bottomAnchor, traling: nil, padding: .init(top: 0, left: 0, bottom: 50, right: 0), size : .init(width: 48, height: 48))
+        changeCategoryButtonGhost.anchor(top: nil, leading: nil, bottom: bottomAnchor, traling: nil, padding: .init(top: 0, left: 0, bottom: 50, right: 0), size : .init(width: 60, height: 60))
         changeCategoryButtonGhost.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         
@@ -88,7 +88,15 @@ final class HeadlinesView : UIView {
         articlesCollectionView.backgroundColor = .clear        
         
         addSubview(articlesCollectionView)
-        articlesCollectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: changeCategoryButton.topAnchor, traling: trailingAnchor, padding: .init(top: 30, left: 22, bottom: 8, right: 22), size: .init(width: UIScreen.main.bounds.size.width - 44, height: UIScreen.main.bounds.size.height - 120))
+        articlesCollectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, traling: trailingAnchor, padding: .init(top: 30, left: 22, bottom: 0, right: 22), size: .init(width: UIScreen.main.bounds.size.width - 44, height: UIScreen.main.bounds.size.height - 120))
+        
+        bringSubviewToFront(changeCategoryButton)
+        bringSubviewToFront(changeCategoryButtonGhost)
+        
+    }
+    
+    func updateSectionTitle(title : String){
+        titleView.animateDividersOnNewStories(title: title)
         
     }
     
@@ -122,15 +130,19 @@ final class HeadlinesView : UIView {
         categoriesCollectionView.alpha = 1.0
         categoriesCollectionView.isHidden = false
         
+        changeCategoryButton.image = UIImage(named: "switchCategory")
+        
     }
     
     func disableCategorySelection(){
         
-        self.articlesCollectionView.alpha = 1.0
-        self.categoriesCollectionView.alpha = 0.0
-        self.changeCategoryButtonGhost.alpha = 1.0
-        self.categoriesCollectionView.isHidden = true
-        self.bringSubviewToFront(self.changeCategoryButtonGhost)
+        articlesCollectionView.alpha = 1.0
+        categoriesCollectionView.alpha = 0.0
+        changeCategoryButtonGhost.alpha = 1.0
+        categoriesCollectionView.isHidden = true
+        bringSubviewToFront(changeCategoryButtonGhost)
+        
+        changeCategoryButton.image = UIImage(named: "switchCategoryTapped")
         
     }
     
